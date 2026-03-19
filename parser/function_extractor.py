@@ -1,38 +1,35 @@
 import ast
 import os
 
-class Function_extractor:
-    def extract_function(self,file_path):
+class FunctionExtractor:
+    def extract_functions(self, file_path):
         """
-           Docstring for extract_function
-           
-        :param self: the instance of the class
-        :param file_path: a string representing the path to the file to be scanned
-        :return: a list of function names defined in the file
+        Extracts function names from a Python file.
+        :param file_path: Path to the Python file
+        :return: A list of function names
         :rtype: list[str]
         """
-        with open(file_path,"r",encoding = "utf-8") as f:
+        with open(file_path, "r", encoding="utf-8") as f:
             tree = ast.parse(f.read())
-        functions=[]
+        functions = []
         for node in ast.walk(tree):
-            if isinstance(node,ast.FunctionDef):
+            if isinstance(node, ast.FunctionDef):
                 functions.append(node.name)
         return functions
 
-    def scan_repository(self,repo_path):
+
+    def scan_repository(self, repo_path):
         """
-        Docstring for scan_repository
-        :param self: the instance of the class
-        :param repo_path: a string representing the path to the repository to be scanned
-        :return: a dictionary mapping file paths to lists of function names
+        Scans a repository for Python files and extracts function names.
+        :param repo_path: Path to the repository
+        :return: A dictionary mapping file paths to lists of function names
         :rtype: dict[str, list[str]]
         """
-        repo_function = []
-
-        for root,dirs,files in os.walk(repo_path):
+        repo_functions = {}
+        for root, dirs, files in os.walk(repo_path):
             for file in files:
-                if(files.endswith(".py")):
-                    file_path = os.path.join(root,file)
-                    functions = self.extract_function(file_path)
-                    repo_function[file_path]= functions
-        return repo_function
+                if file.endswith(".py"):
+                    file_path = os.path.join(root, file)
+                    functions = self.extract_functions(file_path)
+                    repo_functions[file_path] = functions
+        return repo_functions
