@@ -2,7 +2,7 @@ from parser.function_extractor import FunctionExtractor
 from embeddings.code_embedder import CodeEmbedder
 from search.semantics import SematicSearch
 from parser.context_builder import ContextBuilder
-from agentwork import explain_code
+from search.agentwork import explain_code
 
 REPO_PATH = "./repos/sample_repo"
 # idher funcrtions and classes dono chahiye, taaki context build kar sake

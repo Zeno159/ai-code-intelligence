@@ -1,5 +1,4 @@
-# AI Code Intelligence
-
+## Codebase-Assistant:
 An AI system that analyzes GitHub repositories using AST parsing, semantic search, and LLM-powered code explanation. Ask questions about any codebase in plain English and get accurate, context-aware answers.
 
 ## Overview
