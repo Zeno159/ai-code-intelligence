@@ -6,7 +6,7 @@ class DependencyGraph:
         self.graph = nx.DiGraph()
 
     def add_dependency(self, file, dependency):
-        if file and dependency:  # guard against None/empty
+        if file and dependency: 
             self.graph.add_edge(file, dependency)
 
     def build_graph(self, dependency_dict):
@@ -17,7 +17,7 @@ class DependencyGraph:
         }
         """
         for file, deps in dependency_dict.items():
-            self.graph.add_node(file)  # ensure isolated nodes appear too
+            self.graph.add_node(file) 
             for dep in deps:
                 self.add_dependency(file, dep)
 
